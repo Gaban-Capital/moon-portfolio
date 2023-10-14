@@ -6,6 +6,11 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --brown: #261c15;
+  --yellow: #eee0cb;
+  --green: #4e6e58;
+  --pink: #e56399;
+  --red: ##d10000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,12 +21,44 @@
   }
 }
 
+/*
+Correct the inability to style clickable types in iOS and Safari.
+*/
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgb(var(--yellow));
+  background-color: var(--brown);
+}
+
+/* colors */
+.bg-gray-333 {
+  background-color: #333;
+}
+
+.bg-gray-555 {
+  background-color: #555;
+}
+
+button.btn {
+  @apply font-bold py-4 px-4 rounded-lg border-none;
+  cursor: pointer;
+}
+button.btn.gray-333 {
+  @apply bg-gray-333 text-yellow;
+}
+button.btn.gray-333:hover {
+  @apply bg-gray-555 brightness-150;
+}
+button.btn.gray-555 {
+  @apply bg-gray-555 text-yellow;
+}
+button.btn.gray-555:hover {
+  @apply bg-gray-555 brightness-150;
 }

@@ -23,6 +23,7 @@ const config: Config = {
       green: "#4E6E58",
       pink: "#E56399",
       red: "#D10000",
+      white: "#fff",
     },
     container: {
       padding: {
@@ -31,6 +32,7 @@ const config: Config = {
         lg: "4rem",
         xl: "5rem",
         "2xl": "6rem",
+        "4xl": "10rem",
       },
     },
     fontFamily: {

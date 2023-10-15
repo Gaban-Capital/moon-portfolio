@@ -37,7 +37,17 @@ body {
   background-color: var(--brown);
 }
 
-/* colors */
+/* Logo */
+.text-transparent {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.logo-text {
+  @apply bg-gradient-to-r from-yellow via-pink to-pink bg-clip-text text-transparent drop-shadow-md;
+  /* width: 78%; */
+}
+
+/* Button */
 .bg-gray-333 {
   background-color: #333;
 }
@@ -56,9 +66,15 @@ button.btn.gray-333 {
 button.btn.gray-333:hover {
   @apply bg-gray-555 brightness-150;
 }
+button.btn.gray-333:active {
+  @apply bg-gray-333 brightness-50 text-white relative top-1;
+}
 button.btn.gray-555 {
   @apply bg-gray-555 text-yellow;
 }
 button.btn.gray-555:hover {
   @apply bg-gray-555 brightness-150;
+}
+button.btn.gray-555:active {
+  @apply bg-gray-333 brightness-50 text-white relative top-1;
 }

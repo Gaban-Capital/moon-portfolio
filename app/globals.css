@@ -78,3 +78,11 @@ button.btn.gray-555:hover {
 button.btn.gray-555:active {
   @apply bg-gray-333 brightness-50 text-white relative top-1;
 }
+button.btn-google {
+  padding: 1rem 1rem 0.75rem;
+}
+
+.user-auth-forms input {
+  @apply font-bold mb-4 py-4 px-4 rounded-lg border-none;
+  width: 90%;
+}

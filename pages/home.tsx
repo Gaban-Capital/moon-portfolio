@@ -1,36 +1,47 @@
-"use client";
+import { FC } from "react";
+import Link from "next/link";
 
-import { useEffect } from "react";
-import Hotjar from "@hotjar/browser";
+import { MOON_PORTFOLIO, TAG_LINE } from "@/constants/copy";
 
-export default function Home() {
-  useEffect(() => {
-    const siteId = 3694573;
-    const hotjarVersion = 6;
+interface pageProps {}
 
-    Hotjar.init(siteId, hotjarVersion);
-  }, []);
-
+const page: FC<pageProps> = ({}) => {
   return (
     <main className="mt-[100px] lg:max-w-[360px] max-w-[400px]">
       <div>
-        <h1 className="logo-text lg:text-5xl text-4xl">Moon Portfolio</h1>
-        <h4 className="text-yellow lg:text-2xl text-md">
-          Track and project your crypto wealth
-        </h4>
+        <h1 className="logo-text lg:text-5xl text-4xl">{MOON_PORTFOLIO}</h1>
+        <h4 className="text-yellow lg:text-2xl text-md">{TAG_LINE}</h4>
+        <Link href="/register">
+          <button
+            type="button"
+            className="btn gray-333 text-sm lg:text-lg w-full mb-4"
+          >
+            Sign Up with Email
+          </button>
+        </Link>
         <button
           type="button"
-          className="btn gray-333 text-sm lg:text-lg w-full mb-4"
+          className="btn btn-google gray-555 text-sm lg:text-lg w-full"
         >
-          Sign Up with Email
+          <div className="float-left flex-auto">
+            <img
+              width="24"
+              height="24"
+              src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/external-Google-logos-and-brands-those-icons-lineal-those-icons.png"
+              alt="external-Google-logos-and-brands-those-icons-lineal-those-icons"
+            />
+          </div>
+          <div>Continue with Google</div>
         </button>
-        <button
-          type="button"
-          className="btn gray-555 text-sm lg:text-lg w-full"
-        >
-          Continue with Google
-        </button>
+        <p className="text-yellow">
+          Already have an account?{" "}
+          <Link href="/login" className="text-pink no-underline	">
+            Sign In
+          </Link>
+        </p>
       </div>
     </main>
   );
-}
+};
+
+export default page;

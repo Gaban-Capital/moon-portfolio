@@ -22,7 +22,7 @@ const config: Config = {
       yellow: "#EEE0CB",
       green: "#4E6E58",
       pink: "#E56399",
-      red: "##D10000",
+      red: "#D10000",
     },
     container: {
       padding: {

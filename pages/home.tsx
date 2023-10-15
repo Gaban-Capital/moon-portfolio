@@ -1,4 +1,16 @@
+"use client";
+
+import { useEffect } from "react";
+import Hotjar from "@hotjar/browser";
+
 export default function Home() {
+  useEffect(() => {
+    const siteId = 3694573;
+    const hotjarVersion = 6;
+
+    Hotjar.init(siteId, hotjarVersion);
+  }, []);
+
   return (
     <main className="mt-[100px]">
       <div className="max-w-[335px]">

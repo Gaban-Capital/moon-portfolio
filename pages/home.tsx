@@ -9,7 +9,9 @@ const page: FC<pageProps> = ({}) => {
   return (
     <main className="mt-[100px] lg:max-w-[360px] max-w-[400px]">
       <div>
-        <h1 className="logo-text lg:text-5xl text-4xl">{MOON_PORTFOLIO}</h1>
+        <h1 className="logo-text brightness-150 lg:text-5xl text-4xl">
+          <Link href="/">{MOON_PORTFOLIO}</Link>
+        </h1>
         <h4 className="text-yellow lg:text-2xl text-md">{TAG_LINE}</h4>
         <Link href="/register">
           <button

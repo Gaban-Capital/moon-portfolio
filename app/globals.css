@@ -42,9 +42,9 @@ body {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.logo-text {
+.logo-text a {
   @apply bg-gradient-to-r from-yellow via-pink to-pink bg-clip-text text-transparent drop-shadow-md;
-  /* width: 78%; */
+  text-decoration: none;
 }
 
 /* Button */
@@ -79,10 +79,20 @@ button.btn.gray-555:active {
   @apply bg-gray-333 brightness-50 text-white relative top-1;
 }
 button.btn-google {
-  padding: 1rem 1rem 0.75rem;
+  padding: 1rem 1rem 0.5rem;
+}
+
+.user-auth-forms {
+  overflow: auto;
+}
+
+.user-auth-forms,
+.input-fields {
+  width: 100%;
 }
 
 .user-auth-forms input {
   @apply font-bold mb-4 py-4 px-4 rounded-lg border-none;
-  width: 90%;
+  font-size: inherit;
+  width: 328px;
 }

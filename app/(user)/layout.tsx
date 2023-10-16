@@ -2,7 +2,9 @@
 'use client';
 import { FC, ReactNode } from 'react';
 import Link from 'next/link';
+
 import { MOON_PORTFOLIO } from '@/constants/copy';
+import Logo from '@/components/logo';
 
 interface layoutProps {
   children: ReactNode;

@@ -1,9 +1,9 @@
 import { FC } from "react";
 import Link from "next/link";
 
-interface pageProps {}
+interface pageProps { }
 
-const page: FC<pageProps> = ({}) => {
+const page: FC<pageProps> = ({ }) => {
   return (
     <div className="user-auth-forms">
       <>

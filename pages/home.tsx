@@ -1,11 +1,12 @@
-import { FC } from "react";
-import Link from "next/link";
+import { FC, useEffect } from 'react';
+import Link from 'next/link';
 
-import { MOON_PORTFOLIO, TAG_LINE } from "@/constants/copy";
+import { MOON_PORTFOLIO, TAG_LINE } from '@/constants/copy';
+import Image from 'next/image';
 
 interface pageProps {}
 
-const page: FC<pageProps> = ({}) => {
+const Page: FC<pageProps> = ({}) => {
   return (
     <main className="mt-[100px] lg:max-w-[360px] max-w-[400px]">
       <div>
@@ -14,19 +15,13 @@ const page: FC<pageProps> = ({}) => {
         </h1>
         <h4 className="text-yellow lg:text-2xl text-md">{TAG_LINE}</h4>
         <Link href="/register">
-          <button
-            type="button"
-            className="btn gray-333 text-sm lg:text-lg w-full mb-4"
-          >
+          <button type="button" className="btn gray-333 text-sm lg:text-lg w-full mb-4">
             Sign Up with Email
           </button>
         </Link>
-        <button
-          type="button"
-          className="btn btn-google gray-555 text-sm lg:text-lg w-full"
-        >
+        <button type="button" className="btn btn-google gray-555 text-sm lg:text-lg w-full">
           <div className="float-left flex-auto">
-            <img
+            <Image
               width="24"
               height="24"
               src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/external-Google-logos-and-brands-those-icons-lineal-those-icons.png"
@@ -36,7 +31,7 @@ const page: FC<pageProps> = ({}) => {
           <div>Continue with Google</div>
         </button>
         <p className="text-yellow">
-          Already have an account?{" "}
+          Already have an account?{' '}
           <Link href="/login" className="text-pink no-underline	">
             Sign In
           </Link>
@@ -46,4 +41,4 @@ const page: FC<pageProps> = ({}) => {
   );
 };
 
-export default page;
+export default Page;

@@ -1,8 +1,8 @@
 // ? User routes layout template
-"use client";
-import { FC, ReactNode } from "react";
-import Link from "next/link";
-import { MOON_PORTFOLIO } from "@/constants/copy";
+'use client';
+import { FC, ReactNode } from 'react';
+import Link from 'next/link';
+import { MOON_PORTFOLIO } from '@/constants/copy';
 
 interface layoutProps {
   children: ReactNode;

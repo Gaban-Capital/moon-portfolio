@@ -1,5 +1,6 @@
-import { FC } from "react";
-import Link from "next/link";
+import { FC } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 interface pageProps {}
 
@@ -14,22 +15,16 @@ const page: FC<pageProps> = ({}) => {
         <input type="email" placeholder="email" />
         <input type="password" placeholder="Password" />
       </div>
-      <button
-        type="button"
-        className="btn gray-333 text-sm lg:text-lg w-full mb-4"
-      >
+      <button type="button" className="btn gray-333 text-sm lg:text-lg w-full mb-4">
         Sign In
       </button>
       <Link href="/login" className="float-right text-pink no-underline	">
         Forgot Password?
       </Link>
       <p className="text-yellow mt-10">Or sign in with Google:</p>
-      <button
-        type="button"
-        className="btn btn-google gray-555 text-sm lg:text-lg w-full"
-      >
+      <button type="button" className="btn btn-google gray-555 text-sm lg:text-lg w-full">
         <div className="float-left flex-auto">
-          <img
+          <Image
             width="24"
             height="24"
             src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/external-Google-logos-and-brands-those-icons-lineal-those-icons.png"

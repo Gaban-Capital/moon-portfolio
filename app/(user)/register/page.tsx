@@ -1,9 +1,9 @@
-import { FC } from "react";
-import Link from "next/link";
+import { FC } from 'react';
+import Link from 'next/link';
 
-interface pageProps { }
+interface pageProps {}
 
-const page: FC<pageProps> = ({ }) => {
+const page: FC<pageProps> = ({}) => {
   return (
     <div className="user-auth-forms">
       <>
@@ -36,7 +36,7 @@ const page: FC<pageProps> = ({ }) => {
         <div>Google Account</div>
       </button>
       <p className="text-yellow">
-        Already have an account?{" "}
+        Already have an account?{' '}
         <Link href="/login" className="text-pink no-underline	">
           Sign in with Email
         </Link>

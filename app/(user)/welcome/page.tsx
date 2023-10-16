@@ -1,7 +1,7 @@
-import { FC } from "react";
-import Link from "next/link";
+import { FC } from 'react';
+import Link from 'next/link';
 
-import { TAG_LINE } from "@/constants/copy";
+import { TAG_LINE } from '@/constants/copy';
 
 interface pageProps {}
 
@@ -21,7 +21,7 @@ const page: FC<pageProps> = ({}) => {
         Continue with Google
       </button>
       <p className="text-yellow">
-        Already have an account?{" "}
+        Already have an account?{' '}
         <Link href="/login" className="text-pink no-underline	">
           Sign In
         </Link>

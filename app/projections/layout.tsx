@@ -1,5 +1,5 @@
-"use client";
-import { FC, ReactNode } from "react";
+'use client';
+import { FC, ReactNode } from 'react';
 
 interface layoutProps {
   children: ReactNode;

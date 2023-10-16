@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { FC, useEffect } from "react";
-import Home from "@/pages/home";
-import Hotjar from "@hotjar/browser";
+import { FC, useEffect } from 'react';
+import Home from '@/pages/home';
+import Hotjar from '@hotjar/browser';
 
 interface pageProps {}
 

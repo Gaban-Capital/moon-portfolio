@@ -25,6 +25,13 @@
 Correct padding adding to the content size
 */
 
+/* override browser default */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -41,8 +48,25 @@ button,
 }
 
 body {
+  height: 100vh;
   color: rgb(var(--yellow));
   background-color: var(--brown);
+}
+
+.bg-gradient {
+  background-image: linear-gradient(
+    135deg,
+    hsl(25deg 29% 12%) 0%,
+    hsl(25deg 32% 11%) 21%,
+    hsl(27deg 37% 9%) 30%,
+    hsl(29deg 47% 8%) 39%,
+    hsl(30deg 62% 7%) 46%,
+    hsl(30deg 85% 6%) 54%,
+    hsl(25deg 100% 5%) 61%,
+    hsl(16deg 100% 4%) 69%,
+    hsl(3deg 100% 4%) 79%,
+    hsl(0deg 0% 0%) 100%
+  );
 }
 
 /* Logo */
@@ -78,7 +102,7 @@ button.btn.gray-333:hover {
 }
 
 button.btn.gray-333:active {
-  @apply bg-gray-333 brightness-50 text-white relative top-1;
+  @apply bg-gray-333 brightness-50 text-white relative;
 }
 
 button.btn.gray-555 {
@@ -90,7 +114,7 @@ button.btn.gray-555:hover {
 }
 
 button.btn.gray-555:active {
-  @apply bg-gray-333 brightness-50 text-white relative top-1;
+  @apply bg-gray-333 brightness-50 text-white relative;
 }
 
 button.btn-google {

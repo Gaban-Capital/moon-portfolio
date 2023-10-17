@@ -16,7 +16,6 @@ const Page: FC<pageProps> = ({}) => {
   useEffect(() => {
     const siteId = 3694573;
     const hotjarVersion = 6;
-
     Hotjar.init(siteId, hotjarVersion);
   }, []);
 

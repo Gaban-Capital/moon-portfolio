@@ -75,7 +75,10 @@ const Login = (): JSX.Element => {
         </button>
       </form>
 
-      <Link href="/login" className="float-right text-pink no-underline	">
+      <Link
+        href="/reset-password"
+        className="float-right text-pink no-underline	"
+      >
         Forgot Password?
       </Link>
       <p className="text-yellow mt-10">Or sign in with Google:</p>

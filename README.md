@@ -1,3 +1,5 @@
+![Moon Portfolio](https://github.com/leongaban/github_images/blob/master/moon-portfolio-logo.png?raw=true 'Moon Portfolio')
+
 ## Moon Portfolio
 
 A crypto portfolio tracker and projection creator. This is a NextJS, Typescript, Tailwindcss and Strapi app.

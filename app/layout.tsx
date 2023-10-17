@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={space_grotesk.className}>
+      <body className={`bg-gradient ${space_grotesk.className}`}>
         {children}
         <Analytics />
       </body>

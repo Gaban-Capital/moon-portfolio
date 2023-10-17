@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import useAuth from '@/common/hooks/useAuth';
 
-import { MOON_PORTFOLIO } from '@/constants/copy';
+import { MOON_PORTFOLIO } from '@/common/constants/copy';
 // import Alert from '@/components/alert'; // TODO handle auth alerts
 
 interface layoutProps {

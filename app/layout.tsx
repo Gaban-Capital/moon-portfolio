@@ -2,7 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import { MOON_PORTFOLIO, TAG_LINE } from '@/constants/copy';
+import { MOON_PORTFOLIO, TAG_LINE } from '@/common/constants/copy';
 
 const space_grotesk = Space_Grotesk({ subsets: ['latin'] });
 

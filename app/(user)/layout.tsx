@@ -1,9 +1,12 @@
 // ? User routes layout template
 'use client';
-import { FC, ReactNode } from 'react';
+
+import { FC, ReactNode, useEffect } from 'react';
 import Link from 'next/link';
 
 import { MOON_PORTFOLIO } from '@/constants/copy';
+import { useRouter } from 'next/navigation';
+import useAuth from '@/common/hooks/useAuth';
 import Logo from '@/components/logo';
 
 interface layoutProps {
@@ -11,6 +14,13 @@ interface layoutProps {
 }
 
 const Layout: FC<layoutProps> = ({ children }) => {
+  const { isAuthenticated, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated && !loading) router.push('/');
+  }, [isAuthenticated, loading]);
+
   return (
     <main className="flex flex-col items-center justify-between p-10">
       <div className="lg:max-w-[360px] max-w-[400px]">

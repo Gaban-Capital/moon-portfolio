@@ -6,6 +6,7 @@ import Authenticated from '@/pages/authenticated';
 import Hotjar from '@hotjar/browser';
 import { AxiosProvider } from '@/common/contexts/AxiosProvider';
 import useAuth from '@/common/hooks/useAuth';
+import Loading from '@/components/loading';
 
 interface pageProps {}
 
@@ -22,7 +23,7 @@ const Page: FC<pageProps> = ({}) => {
   let page;
 
   if (loading) {
-    page = <p>Loading</p>;
+    page = <Loading />;
   } else if (isAuthenticated) {
     page = (
       <AxiosProvider>

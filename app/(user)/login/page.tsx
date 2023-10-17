@@ -48,7 +48,7 @@ const Page = (): JSX.Element => {
       <form className="input-fields" onSubmit={handleSubmit(onSubmit)}>
         <input
           type="email"
-          placeholder="email"
+          placeholder="Email"
           {...register('identifier', {
             required: 'Email is required',
           })}

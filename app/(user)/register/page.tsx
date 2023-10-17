@@ -13,8 +13,8 @@ const Page: FC<pageProps> = ({}) => {
         <title>Create Account</title>
       </>
       <h4 className="text-yellow lg:text-2xl text-md">Create your account</h4>
-      <input type="name" placeholder="name" />
-      <input type="email" placeholder="email" className="mt-4" />
+      <input type="name" placeholder="Name" />
+      <input type="email" placeholder="Email" className="mt-4" />
       <input type="password" placeholder="Password" className="mt-4" />
       <input type="password" placeholder="Confirm Password" className="mt-4" />
       <button

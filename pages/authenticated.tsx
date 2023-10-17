@@ -9,7 +9,7 @@ const Authenticated: FC<pageProps> = ({}) => {
 
   return (
     <main className="mt-[100px] lg:max-w-[360px] max-w-[400px]">
-      <p>user is authenticated</p>
+      <p>User is authenticated</p>
       <button
         onClick={() => {
           unsetToken();

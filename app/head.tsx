@@ -1,11 +1,12 @@
 import { FC } from 'react';
+import { MOON_PORTFOLIO } from '@/common/constants/copy';
 
 interface headProps {}
 
 const head: FC<headProps> = ({}) => {
   return (
     <>
-      <title>Moon Portfolio</title>
+      <title>{MOON_PORTFOLIO}</title>
     </>
   );
 };

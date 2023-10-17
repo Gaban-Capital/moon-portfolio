@@ -1,11 +1,13 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
-import { setToken } from '@/common/lib/auth';
+import Link from 'next/link';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+
+import { Button } from '@/components/buttons';
+import { setToken } from '@/common/lib/auth';
+import { SUBMIT, RESET_PASS, RESET_YOUR_PASS } from '@/common/constants/copy';
 
 type ResetPasswordInput = {
   identifier: string;
@@ -30,9 +32,9 @@ const ResetPassword = (): JSX.Element => {
   return (
     <div className="user-auth-forms">
       <>
-        <title>Reset Password</title>
+        <title>{RESET_PASS}</title>
       </>
-      <h4 className="text-yellow lg:text-2xl text-md">Reset your password</h4>
+      <h4 className="text-yellow lg:text-2xl text-md">{RESET_YOUR_PASS}</h4>
       <form className="input-fields" onSubmit={handleSubmit(onSubmit)}>
         <input
           type="email"
@@ -41,13 +43,7 @@ const ResetPassword = (): JSX.Element => {
             required: 'Email is required',
           })}
         />
-        <button
-          type="submit"
-          className="btn gray-333 text-sm lg:text-lg w-full my-4"
-          disabled={isLoading}
-        >
-          Submit
-        </button>
+        <Button gray="333" text={SUBMIT} mt={true} disabled={isLoading} />
       </form>
     </div>
   );

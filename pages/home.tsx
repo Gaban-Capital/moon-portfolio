@@ -1,8 +1,9 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { MOON_PORTFOLIO, TAG_LINE } from '@/constants/copy';
-import Image from 'next/image';
+import Logo from '@/components/logo';
 
 interface pageProps {}
 
@@ -10,7 +11,9 @@ const Page: FC<pageProps> = ({}) => {
   return (
     <main className="mt-[100px] lg:max-w-[360px] max-w-[400px]">
       <div>
-        <h1 className="logo-text brightness-150 lg:text-5xl text-4xl">
+        <Logo large={true} />
+
+        <h1 className="logo-text mt-0 brightness-150 lg:text-5xl text-4xl">
           <Link href="/">{MOON_PORTFOLIO}</Link>
         </h1>
         <h4 className="text-yellow lg:text-2xl text-md">{TAG_LINE}</h4>

@@ -1,2 +1,2 @@
 export const pathClean = (pathName: string): string =>
-  pathName.replace("/", "");
+  pathName.replace('/', '');

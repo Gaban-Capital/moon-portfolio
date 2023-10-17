@@ -12,14 +12,13 @@ type LoginInput = {
   password: string;
 };
 
-const Page = (): JSX.Element => {
+const Login = (): JSX.Element => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isLoading },
     setError,
   } = useForm<LoginInput>();
-
   const router = useRouter();
 
   const onSubmit: SubmitHandler<LoginInput> = async data => {
@@ -70,6 +69,7 @@ const Page = (): JSX.Element => {
         <button
           type="submit"
           className="btn gray-333 text-sm lg:text-lg w-full my-4"
+          disabled={isLoading}
         >
           Sign In
         </button>
@@ -97,4 +97,4 @@ const Page = (): JSX.Element => {
   );
 };
 
-export default Page;
+export default Login;

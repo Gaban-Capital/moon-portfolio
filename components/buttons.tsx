@@ -33,12 +33,14 @@ export const Button = ({
   google,
   disabled,
 }: ButtonProps) => {
+  const btnClasses = `btn ${google && 'btn-google'} gray-${gray}`;
   const mClasses = `${mt && 'my-4'} ${mb && 'mb-4'}`;
+  const textClasses = `${space_grotesk.className} text-sm lg:text-base`;
 
   return (
     <button
       type="button"
-      className={`btn gray-${gray} text-sm lg:text-base w-full ${mClasses} ${space_grotesk.className}`}
+      className={`${btnClasses} ${mClasses} ${textClasses} w-full`}
       disabled={disabled}
     >
       {google && <GoogleIcon />}

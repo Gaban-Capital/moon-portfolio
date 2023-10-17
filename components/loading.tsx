@@ -15,7 +15,7 @@ export default function Loading(): JSX.Element {
           cy="50"
           r="45"
           stroke="rgb(238, 224, 203)"
-          stroke-width="8"
+          strokeWidth="8"
           fill="none"
         >
           <animate

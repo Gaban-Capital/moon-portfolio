@@ -1,4 +1,4 @@
-/* // ? component usage
+/* // ? Component usage
   <Alert type={'error'} msg={'Some seriously bad happened.'} />
   <Alert type={'success'} msg={'You are going to make it!'} />
 */

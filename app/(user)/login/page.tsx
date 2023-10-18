@@ -1,11 +1,18 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import axios from 'axios';
 import { setToken } from '@/common/lib/auth';
 import { useRouter } from 'next/navigation';
+
+import { Button } from '@/components/buttons';
+import {
+  SIGN_IN,
+  CONTINUE_GOOGLE,
+  FORGOT_PASS,
+  OR_SIGN_GOOGLE,
+} from '@/common/constants/copy';
 
 type LoginInput = {
   identifier: string;
@@ -66,33 +73,24 @@ const Login = (): JSX.Element => {
         {errors?.password?.message && (
           <div className="text-red mt-2">{errors?.password?.message}</div>
         )}
-        <button
-          type="submit"
-          className="btn gray-333 text-sm lg:text-lg w-full my-4"
+        <Button
+          gray="333"
+          text={SIGN_IN}
+          mt={true}
+          mb={true}
           disabled={isLoading}
-        >
-          Sign In
-        </button>
+        />
       </form>
 
-      <Link href="/login" className="float-right text-pink no-underline	">
-        Forgot Password?
-      </Link>
-      <p className="text-yellow mt-10">Or sign in with Google:</p>
-      <button
-        type="button"
-        className="btn btn-google gray-555 text-sm lg:text-lg w-full"
+      <Link
+        href="/reset-password"
+        className="float-right text-pink no-underline	"
       >
-        <div className="float-left flex-auto">
-          <Image
-            width="24"
-            height="24"
-            src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/external-Google-logos-and-brands-those-icons-lineal-those-icons.png"
-            alt="external-Google-logos-and-brands-those-icons-lineal-those-icons"
-          />
-        </div>
-        <div>Continue with Google</div>
-      </button>
+        {FORGOT_PASS}
+      </Link>
+      <p className="text-yellow mt-10">{OR_SIGN_GOOGLE}</p>
+
+      <Button gray="555" text={CONTINUE_GOOGLE} google={true} />
     </div>
   );
 };

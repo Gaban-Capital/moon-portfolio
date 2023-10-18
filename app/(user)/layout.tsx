@@ -3,12 +3,11 @@
 
 import { FC, ReactNode, useEffect } from 'react';
 import Link from 'next/link';
-
-import { MOON_PORTFOLIO } from '@/constants/copy';
-
 import { useRouter } from 'next/navigation';
 import useAuth from '@/common/hooks/useAuth';
-import Logo from '@/components/logo';
+
+import { MOON_PORTFOLIO } from '@/common/constants/copy';
+// import Alert from '@/components/alert'; // TODO handle auth alerts
 
 interface layoutProps {
   children: ReactNode;
@@ -24,6 +23,7 @@ const Layout: FC<layoutProps> = ({ children }) => {
 
   return (
     <main className="flex flex-col items-center justify-between p-10">
+      {/* <Alert type={'error'} msg={'Some seriously bad happened.'} /> */}
       <div className="lg:max-w-[360px] max-w-[400px]">
         <div>
           <h1 className="logo-text brightness-150 lg:text-5xl text-4xl">

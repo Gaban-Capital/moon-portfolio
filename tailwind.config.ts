@@ -36,7 +36,7 @@ const config: Config = {
       },
     },
     fontFamily: {
-      sans: ['Space_Grotesk'],
+      sans: ['Space_Grotesk', 'Poppins'],
       serif: ['Noto_Serif'],
     },
     fontSize: {

@@ -1,12 +1,20 @@
 'use client';
 
+import axios from 'axios';
 import { FC } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { setToken } from '@/common/lib/auth';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
+
+import { setToken } from '@/common/lib/auth';
+import {
+  CREATE_ACCOUNT,
+  CREATE_YOUR_ACCOUNT,
+  GOOGLE_ACCOUNT,
+  SIGN_UP,
+  SIGN_IN_EMAIL,
+} from '@/common/constants/copy';
 
 interface pageProps {}
 
@@ -60,9 +68,9 @@ const Register: FC<pageProps> = ({}) => {
   return (
     <form className="user-auth-forms" onSubmit={handleSubmit(onSubmit)}>
       <>
-        <title>Create Account</title>
+        <title>{CREATE_ACCOUNT}</title>
       </>
-      <h4 className="text-yellow lg:text-2xl text-md">Create your account</h4>
+      <h4 className="text-yellow lg:text-2xl text-md">{CREATE_YOUR_ACCOUNT}</h4>
       <input
         type="name"
         placeholder="Name"
@@ -108,14 +116,14 @@ const Register: FC<pageProps> = ({}) => {
       )}
       <button
         type="submit"
-        className="btn gray-333 text-sm lg:text-lg w-full my-4"
+        className="btn gray-333 text-sm lg:text-base w-full my-4"
       >
-        Sign Up
+        {SIGN_UP}
       </button>
       <p className="text-yellow">Or sign in with</p>
       <button
         type="button"
-        className="btn btn-google gray-555 text-sm lg:text-lg w-full"
+        className="btn btn-google gray-555 text-sm lg:text-base w-full"
         disabled={isLoading}
       >
         <div className="float-left flex-auto">
@@ -126,12 +134,12 @@ const Register: FC<pageProps> = ({}) => {
             alt="external-Google-logos-and-brands-those-icons-lineal-those-icons"
           />
         </div>
-        <div>Google Account</div>
+        <div>{GOOGLE_ACCOUNT}</div>
       </button>
       <p className="text-yellow">
         Already have an account?{' '}
         <Link href="/login" className="text-pink no-underline	">
-          Sign in with Email
+          {SIGN_IN_EMAIL}
         </Link>
       </p>
     </form>

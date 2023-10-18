@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { Space_Grotesk } from 'next/font/google';
+import { ButtonHTMLAttributes } from 'react';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   gray: string; // ? 333, 555
   text: string;
   mt?: boolean;
@@ -32,6 +33,7 @@ export const Button = ({
   mb,
   google,
   disabled,
+  ...props
 }: ButtonProps) => {
   const btnClasses = `btn ${google && 'btn-google'} gray-${gray}`;
   const mClasses = `${mt && 'my-4'} ${mb && 'mb-4'}`;
@@ -40,6 +42,7 @@ export const Button = ({
   return (
     <button
       type="button"
+      {...props}
       className={`${btnClasses} ${mClasses} ${textClasses} w-full`}
       disabled={disabled}
     >

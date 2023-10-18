@@ -35,8 +35,6 @@ const Register: FC<pageProps> = ({}) => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<RegisterInput> = async data => {
-    console.log(data);
-
     if (data.password !== data.confirmPassword) {
       setError('confirmPassword', {
         message: 'Password does not match',

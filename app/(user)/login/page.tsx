@@ -79,6 +79,7 @@ const Login = (): JSX.Element => {
           mt={true}
           mb={true}
           disabled={isLoading}
+          type="submit"
         />
       </form>
 

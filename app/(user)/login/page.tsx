@@ -37,7 +37,7 @@ const Login = (): JSX.Element => {
 
       setToken(authData);
 
-      router.replace('/');
+      router.replace('/portfolio');
     } catch (error: any) {
       setError('password', {
         message: error?.response?.data?.error?.message,

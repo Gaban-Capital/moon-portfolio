@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import useAuth from '@/common/hooks/useAuth';
 
 import { MOON_PORTFOLIO } from '@/common/constants/copy';
+import Loading from '@/components/loading';
 // import Alert from '@/components/alert'; // TODO handle auth alerts
 
 interface layoutProps {
@@ -20,6 +21,14 @@ const Layout: FC<layoutProps> = ({ children }) => {
   useEffect(() => {
     if (isAuthenticated && !loading) router.push('/');
   }, [isAuthenticated, loading]);
+
+  if (loading || isAuthenticated) {
+    return (
+      <main className="flex flex-col items-center justify-between p-10">
+        <Loading />
+      </main>
+    );
+  }
 
   return (
     <main className="flex flex-col items-center justify-between p-10">

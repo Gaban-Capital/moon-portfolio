@@ -26,7 +26,7 @@ const Page: FC<pageProps> = ({}) => {
         </h1>
         <h4 className="text-yellow lg:text-2xl text-md">{TAG_LINE}</h4>
 
-        <Link href="/register">
+        <Link href="/register" className="no-underline">
           <Button gray="333" text={SIGN_UP_EMAIL} mb={true} />
         </Link>
 

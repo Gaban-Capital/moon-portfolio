@@ -15,6 +15,7 @@ import {
   SIGN_UP,
   SIGN_IN_EMAIL,
 } from '@/common/constants/copy';
+import { Button } from '@/components/buttons';
 
 interface pageProps {}
 
@@ -29,7 +30,7 @@ const Register: FC<pageProps> = ({}) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<RegisterInput>();
   const router = useRouter();
@@ -112,17 +113,19 @@ const Register: FC<pageProps> = ({}) => {
       {errors?.confirmPassword?.message && (
         <div className="text-red mt-2">{errors?.confirmPassword?.message}</div>
       )}
-      <button
+      <Button
         type="submit"
-        className="btn gray-333 text-sm lg:text-base w-full my-4"
-      >
-        {SIGN_UP}
-      </button>
+        gray="333"
+        text={SIGN_UP}
+        mt
+        loading={isSubmitting}
+        disabled={isSubmitting}
+      />
       <p className="text-yellow">Or sign in with</p>
       <button
         type="button"
         className="btn btn-google gray-555 text-sm lg:text-base w-full"
-        disabled={isLoading}
+        disabled={isSubmitting}
       >
         <div className="float-left flex-auto">
           <Image

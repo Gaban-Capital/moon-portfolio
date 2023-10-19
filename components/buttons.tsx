@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Space_Grotesk } from 'next/font/google';
-import { ButtonHTMLAttributes } from 'react';
+import Loading from './loading';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   gray: string; // ? 333, 555
@@ -9,6 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   mb?: boolean;
   google?: boolean;
   disabled?: boolean;
+  loading?: boolean;
 }
 
 const space_grotesk = Space_Grotesk({ weight: '700', subsets: ['latin'] });
@@ -33,9 +34,12 @@ export const Button = ({
   mb,
   google,
   disabled,
+  loading = false,
   ...props
 }: ButtonProps) => {
-  const btnClasses = `btn ${google && 'btn-google'} gray-${gray}`;
+  const btnClasses = `btn ${
+    google ? 'btn-google' : 'flex justify-center'
+  } gray-${gray}`;
   const mClasses = `${mt && 'my-4'} ${mb && 'mb-4'}`;
   const textClasses = `${space_grotesk.className} text-sm lg:text-base`;
 
@@ -48,6 +52,11 @@ export const Button = ({
     >
       {google && <GoogleIcon />}
       {text}
+      {loading && (
+        <div className="ml-2">
+          <Loading size={18} withLabel={false} />
+        </div>
+      )}
     </button>
   );
 };

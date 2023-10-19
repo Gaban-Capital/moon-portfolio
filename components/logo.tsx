@@ -1,5 +1,5 @@
 interface LogoProps {
-  large: boolean;
+  large?: boolean;
 }
 
 export default function Logo({ large }: LogoProps) {

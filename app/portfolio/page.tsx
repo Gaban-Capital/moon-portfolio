@@ -2,6 +2,9 @@
 
 import { FC, useEffect, useState } from 'react';
 
+import Logo from '@/components/logo';
+import { MOON_PORTFOLIO } from '@/common/constants/copy';
+
 interface pageProps {}
 
 // type Post = {
@@ -25,7 +28,12 @@ async function getPosts() {
 const page: FC<pageProps> = ({}) => {
   return (
     <div className="portfolio-container">
-      <h1>Portfolio Container</h1>
+      <div className="portfolio-logo">
+        <Logo />
+        <h1 className="logo-text mt-0 brightness-150 text-xl">
+          {MOON_PORTFOLIO}
+        </h1>
+      </div>
       <div></div>
     </div>
   );

@@ -5,7 +5,7 @@ import { FC, useEffect, useState } from 'react';
 import Logo from '@/components/logo';
 import { MOON_PORTFOLIO } from '@/common/constants/copy';
 
-interface pageProps {}
+interface portfolioProps {}
 
 // type Post = {
 //   id: number;
@@ -25,7 +25,7 @@ async function getPosts() {
   return res.json();
 }
 
-const page: FC<pageProps> = ({}) => {
+const page: FC<portfolioProps> = ({}) => {
   return (
     <div className="portfolio-container">
       <div className="portfolio-logo">

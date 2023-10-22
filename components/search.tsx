@@ -1,10 +1,8 @@
 // import { useState } from 'react';
 
-interface SearchProps {
-  text: string;
-}
+interface SearchProps {}
 
-export default function Search({ text }: SearchProps) {
+export default function Search({}: SearchProps) {
   // const [brighness, setBrightness] = useState('');
 
   // const defaultClasses =

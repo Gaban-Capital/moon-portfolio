@@ -1,4 +1,4 @@
-import './globals.css';
+import './css/globals.css';
 import type { Metadata } from 'next';
 import { Space_Grotesk } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';

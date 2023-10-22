@@ -16,7 +16,7 @@ export default function Alert({ type, msg }: AlertProps) {
 
   const defaultClasses =
     'w-full border text-white px-4 py-3 rounded cursor-pointer relative';
-  const colorClass = type == 'error' ? 'bg-red' : 'bg-green';
+  const colorClass = type === 'error' ? 'bg-red' : 'bg-green';
   let finalColorClass = defaultClasses.concat(` ${colorClass}`);
 
   return (

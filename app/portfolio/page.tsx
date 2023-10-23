@@ -39,7 +39,7 @@ const page: FC<portfolioProps> = ({}) => {
         <CurrencySwitch />
         <Toggle type="grid" />
       </div>
-      <div>{coinPortfolio?.map(coin => <li>{coin}</li>)}</div>
+      <div>{coinPortfolio?.map((coin, i) => <li key={i}>{coin}</li>)}</div>
       <Nav />
     </div>
   );

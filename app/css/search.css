@@ -1,0 +1,28 @@
+.search-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.search-container input {
+  width: 250px;
+  height: 50px;
+  padding: 0 1rem 0 2.5rem;
+  border-radius: 11px;
+  color: #fff;
+  background: #000;
+  border: 1px solid #454545;
+}
+
+.search-container input[type='search' i]::-webkit-search-cancel-button {
+  filter: brightness(0.5) invert(1);
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #fff;
+}
+
+.search-icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}

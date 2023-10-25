@@ -10,6 +10,7 @@ import Toggle from '@/components/toggle';
 import TotalValue from '@/components/total-value';
 import { MOON_PORTFOLIO } from '@/common/constants/copy';
 import Search from '@/components/search';
+import Overlay from '@/components/overlay';
 
 interface portfolioProps {}
 
@@ -19,7 +20,6 @@ async function getPosts() {
 }
 
 const page: FC<portfolioProps> = ({}) => {
-  const [searching, setSearching] = useState(false);
   const [searchText, setInputResult] = useState('');
   const [toggleType, setToggleType] = useState('grid');
   const [currency, setCurrency] = useState('currency');
@@ -29,8 +29,12 @@ const page: FC<portfolioProps> = ({}) => {
     setInputResult(value);
   };
 
+  const handleOverlayClick = () => setInputResult('');
+
   return (
     <div className="portfolio-container">
+      <Overlay searching={searchText} clickHandler={handleOverlayClick} />
+
       <header>
         <div className="portfolio-logo">
           <Logo />
@@ -38,12 +42,8 @@ const page: FC<portfolioProps> = ({}) => {
             {MOON_PORTFOLIO}
           </h1>
         </div>
-        <Search onInputChange={handleInputUpdate} />
+        <Search onInputChange={handleInputUpdate} valueToChange={searchText} />
       </header>
-
-      <div>
-        <p>Input Result: {searchText}</p>
-      </div>
 
       <div>
         <TotalValue type="usd" total={1000000.0} />

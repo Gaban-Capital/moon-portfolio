@@ -19,9 +19,15 @@ async function getPosts() {
 }
 
 const page: FC<portfolioProps> = ({}) => {
+  const [searching, setSearching] = useState(false);
+  const [searchText, setInputResult] = useState('');
   const [toggleType, setToggleType] = useState('grid');
   const [currency, setCurrency] = useState('currency');
   const [coinPortfolio, setCoinPortfolio] = useState([]);
+
+  const handleInputUpdate = (value: string) => {
+    setInputResult(value);
+  };
 
   return (
     <div className="portfolio-container">
@@ -32,8 +38,13 @@ const page: FC<portfolioProps> = ({}) => {
             {MOON_PORTFOLIO}
           </h1>
         </div>
-        <Search />
+        <Search onInputChange={handleInputUpdate} />
       </header>
+
+      <div>
+        <p>Input Result: {searchText}</p>
+      </div>
+
       <div>
         <TotalValue type="usd" total={1000000.0} />
         <CurrencySwitch />

@@ -1,5 +1,8 @@
 .portfolio-container {
   padding: 1rem;
+  color: #666;
+  font-family: 'Poppins';
+  font-weight: 400;
 }
 
 .portfolio-logo {

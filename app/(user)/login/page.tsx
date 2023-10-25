@@ -36,7 +36,7 @@ const Login = (): JSX.Element => {
     try {
       const { data: authData } = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
-        data,
+        data
       );
 
       setToken(authData);

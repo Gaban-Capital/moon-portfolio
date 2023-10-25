@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import { STATUS_CODE } from '../constants/status-code.constant';
 import { AxiosContext } from './AxiosContext';
@@ -7,19 +7,35 @@ import { getTokenFromLocalCookie, unsetToken } from '../lib/auth';
 const axiosInstance = axios.create();
 
 interface PropsWithChildren {
-  children: ReactElement;
+  children: ReactNode | ReactElement;
 }
 
 export const AxiosProvider = ({ children }: PropsWithChildren) => {
-  const [responseInterceptorId, setResponseInterceptorId] = useState<number | null>(null);
-  const [requestInterceptorId, setRequestInterceptorId] = useState<number | null>(null);
+  const [responseInterceptorId, setResponseInterceptorId] = useState<
+    number | null
+  >(null);
+  const [requestInterceptorId, setRequestInterceptorId] = useState<
+    number | null
+  >(null);
 
   useEffect(() => {
-    if (responseInterceptorId) axiosInstance.interceptors.response.eject(responseInterceptorId);
-    if (requestInterceptorId) axiosInstance.interceptors.request.eject(requestInterceptorId);
+    if (responseInterceptorId)
+      axiosInstance.interceptors.response.eject(responseInterceptorId);
+    if (requestInterceptorId)
+      axiosInstance.interceptors.request.eject(requestInterceptorId);
 
-    setResponseInterceptorId(axiosInstance.interceptors.response.use((res) => res, responseErrorInterceptor));
-    setRequestInterceptorId(axiosInstance.interceptors.request.use(requestInterceptor, handleRejectedConfig));
+    setResponseInterceptorId(
+      axiosInstance.interceptors.response.use(
+        res => res,
+        responseErrorInterceptor
+      )
+    );
+    setRequestInterceptorId(
+      axiosInstance.interceptors.request.use(
+        requestInterceptor,
+        handleRejectedConfig
+      )
+    );
   }, []);
 
   const requestInterceptor = async (config: InternalAxiosRequestConfig) => {
@@ -46,10 +62,16 @@ export const AxiosProvider = ({ children }: PropsWithChildren) => {
           unsetToken();
           break;
         case STATUS_CODE.UNPROCESSABLE_ENTITY:
-          console.error((response.data && response.data.message) || (response.data && response.data.code));
+          console.error(
+            (response.data && response.data.message) ||
+              (response.data && response.data.code)
+          );
           break;
         default:
-          console.error((response.data && response.data.message) || (response.data && response.data.code));
+          console.error(
+            (response.data && response.data.message) ||
+              (response.data && response.data.code)
+          );
           break;
       }
     } catch (error) {
@@ -64,5 +86,9 @@ export const AxiosProvider = ({ children }: PropsWithChildren) => {
     Promise.reject(error);
   };
 
-  return <AxiosContext.Provider value={{ axiosInstance }}>{children}</AxiosContext.Provider>;
+  return (
+    <AxiosContext.Provider value={{ axiosInstance }}>
+      {children}
+    </AxiosContext.Provider>
+  );
 };

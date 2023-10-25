@@ -12,9 +12,9 @@ import {
   CONTINUE_GOOGLE,
   FORGOT_PASS,
   OR_SIGN_GOOGLE,
-  SIGN_UP_EMAIL,
 } from '@/common/constants/copy';
 import { Poppins } from 'next/font/google';
+import useGoogleAuth from '@/common/hooks/useGoogleAuth';
 
 type LoginInput = {
   identifier: string;
@@ -31,11 +31,12 @@ const Login = (): JSX.Element => {
     setError,
   } = useForm<LoginInput>();
   const router = useRouter();
+  const { login, loading } = useGoogleAuth();
 
   const onSubmit: SubmitHandler<LoginInput> = async data => {
     try {
       const { data: authData } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`,
         data
       );
 
@@ -94,7 +95,13 @@ const Login = (): JSX.Element => {
       </Link>
       <p className="text-yellow mt-10">{OR_SIGN_GOOGLE}</p>
 
-      <Button gray="555" text={CONTINUE_GOOGLE} google={true} />
+      <Button
+        gray="555"
+        text={CONTINUE_GOOGLE}
+        google={true}
+        loading={loading}
+        onClick={login}
+      />
       <p className={`text-yellow ${poppins.className}`}>
         {"Don't have an account yet? "}
         <Link href="/register" className="text-pink no-underline	">

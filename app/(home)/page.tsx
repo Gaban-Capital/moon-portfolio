@@ -15,6 +15,7 @@ import {
 import { Button } from '@/components/buttons';
 import Logo from '@/components/logo';
 import Loading from '@/components/loading';
+import useGoogleAuth from '@/common/hooks/useGoogleAuth';
 
 interface pageProps {}
 
@@ -23,6 +24,7 @@ const poppins = Poppins({ weight: '500', style: 'normal', subsets: ['latin'] });
 const Page: FC<pageProps> = ({}) => {
   const { loading, isAuthenticated } = useAuth();
   const router = useRouter();
+  const { login, loading: loadingGoogle } = useGoogleAuth();
 
   useEffect(() => {
     if (isAuthenticated && !loading) router.push('/portfolio');
@@ -51,7 +53,13 @@ const Page: FC<pageProps> = ({}) => {
             <Button gray="333" text={SIGN_UP_EMAIL} mb={true} />
           </Link>
 
-          <Button gray="555" text={CONTINUE_GOOGLE} google={true} />
+          <Button
+            gray="555"
+            text={CONTINUE_GOOGLE}
+            google={true}
+            loading={loadingGoogle}
+            onClick={login}
+          />
 
           <p className={`text-yellow ${poppins.className}`}>
             Already have an account?{' '}

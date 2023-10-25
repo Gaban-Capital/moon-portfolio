@@ -45,13 +45,13 @@ const Register: FC<pageProps> = ({}) => {
 
     try {
       const { data: authData } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/local/register`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local/register`,
         {
           name: data.name,
           email: data.email,
           username: data.email,
           password: data.password,
-        },
+        }
       );
 
       setToken(authData);

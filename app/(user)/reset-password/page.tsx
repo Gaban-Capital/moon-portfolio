@@ -30,8 +30,8 @@ const ResetPassword = (): JSX.Element => {
   const onSubmit: SubmitHandler<ResetPasswordInput> = async data => {
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/forgot-password`,
-        data,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/forgot-password`,
+        data
       );
 
       setSuccessMessage('Reset password link has been sent to your email');

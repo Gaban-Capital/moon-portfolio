@@ -34,11 +34,11 @@ const NewPassword = (): JSX.Element => {
   const onSubmit: SubmitHandler<NewPasswordInput> = async data => {
     try {
       await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/reset-password`,
         {
           ...data,
           code: searchParams?.get('confirmation'),
-        },
+        }
       );
 
       setSuccessMessage('Your password has been changed');

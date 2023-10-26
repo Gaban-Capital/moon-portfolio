@@ -42,7 +42,7 @@ const page: FC<portfolioProps> = ({}) => {
   const [coinPortfolio, setCoinPortfolio] = useState([]);
 
   const portfolioValue =
-    currency === 'usd' ? formatToDollars(1597010.15) : 1597010.15;
+    currency === 'usd' ? formatToDollars(1597010.15) : '1597010.15';
 
   const handleInputUpdate = (value: string) => setInputResult(value);
 

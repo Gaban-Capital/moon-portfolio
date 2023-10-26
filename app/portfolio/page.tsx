@@ -2,25 +2,21 @@
 
 import { FC, useEffect, useState } from 'react';
 
-import Logo from '@/components/logo';
 import CoinBlock from '@/components/coin-block';
 import CurrencySwitch from '@/components/currency-switch';
+import Logo from '@/components/logo';
 import Nav from '@/components/nav';
+import Overlay from '@/components/overlay';
+import Search from '@/components/search';
 import Toggle from '@/components/toggle';
 import TotalValue from '@/components/total-value';
 import { MOON_PORTFOLIO } from '@/common/constants/copy';
-import Search from '@/components/search';
-import Overlay from '@/components/overlay';
+import { formatToDollars } from '@/common/utils/formatters';
 
 interface portfolioProps {}
 
 //? Temp
-interface Coin {
-  name: string;
-  symbol: string;
-  price: string;
-}
-
+const tempPortfolioValue = 1597010.15;
 const tempCoins = [
   {
     name: 'Bitcoin',
@@ -42,8 +38,11 @@ const tempCoins = [
 const page: FC<portfolioProps> = ({}) => {
   const [searchText, setInputResult] = useState('');
   const [toggleType, setToggleType] = useState('grid');
-  const [currency, setCurrency] = useState('currency');
+  const [currency, setCurrency] = useState('usd');
   const [coinPortfolio, setCoinPortfolio] = useState([]);
+
+  const portfolioValue =
+    currency === 'usd' ? formatToDollars(1597010.15) : 1597010.15;
 
   const handleInputUpdate = (value: string) => setInputResult(value);
 
@@ -68,7 +67,7 @@ const page: FC<portfolioProps> = ({}) => {
       </header>
 
       <div>
-        <TotalValue type="usd" total={1000000.0} />
+        <TotalValue type="usd" total={portfolioValue} />
         <CurrencySwitch />
         <Toggle type="grid" />
       </div>

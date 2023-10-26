@@ -1,5 +1,5 @@
 interface TotalValueProps {
-  total: number;
+  total: string | number;
   type: string;
 }
 

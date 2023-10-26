@@ -14,10 +14,30 @@ import Overlay from '@/components/overlay';
 
 interface portfolioProps {}
 
-async function getPosts() {
-  let res = await fetch('https://dummyjson.com/posts?limit=3');
-  return res.json();
+//? Temp
+interface Coin {
+  name: string;
+  symbol: string;
+  price: string;
 }
+
+const tempCoins = [
+  {
+    name: 'Bitcoin',
+    symbol: 'BTC',
+    price: '34,753.78',
+  },
+  {
+    name: 'Ethereum',
+    symbol: 'ETH',
+    price: '1,796.44',
+  },
+  {
+    name: 'Solana',
+    symbol: 'SOL',
+    price: '32.50',
+  },
+];
 
 const page: FC<portfolioProps> = ({}) => {
   const [searchText, setInputResult] = useState('');
@@ -25,9 +45,7 @@ const page: FC<portfolioProps> = ({}) => {
   const [currency, setCurrency] = useState('currency');
   const [coinPortfolio, setCoinPortfolio] = useState([]);
 
-  const handleInputUpdate = (value: string) => {
-    setInputResult(value);
-  };
+  const handleInputUpdate = (value: string) => setInputResult(value);
 
   const handleOverlayClick = () => setInputResult('');
 
@@ -42,7 +60,11 @@ const page: FC<portfolioProps> = ({}) => {
             {MOON_PORTFOLIO}
           </h1>
         </div>
-        <Search onInputChange={handleInputUpdate} valueToChange={searchText} />
+        <Search
+          coins={tempCoins}
+          onInputChange={handleInputUpdate}
+          valueToChange={searchText}
+        />
       </header>
 
       <div>

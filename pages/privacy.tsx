@@ -13,18 +13,19 @@ const Privacy: FC<pageProps> = ({}) => {
       <p>Effective Date: 10/25/2023</p>
 
       <p>
-        MoonHoldings XYZ, Inc. ("we," "us," or "our") respects the privacy of
-        our users (“user” or “you”). This Privacy Policy explains how we
-        collect, use, disclose, and safeguard your information when you use our
-        MoonPortfolio.xyz (the "Application"). Please read this Privacy Policy
-        carefully. IF YOU DO NOT AGREE WITH THE TERMS OF THIS PRIVACY POLICY,
-        PLEASE DO NOT ACCESS THE APPLICATION.
+        MoonHoldings XYZ, Inc. (&#34;we,&#34; &#34;us,&#34; or &#34;our&#34;)
+        respects the privacy of our users (&#34;user&#34; or &#34;you&#34;).
+        This Privacy Policy explains how we collect, use, disclose, and
+        safeguard your information when you use our MoonPortfolio.xyz (the
+        &#34;Application&#34;). Please read this Privacy Policy carefully. IF
+        YOU DO NOT AGREE WITH THE TERMS OF THIS PRIVACY POLICY, PLEASE DO NOT
+        ACCESS THE APPLICATION.
       </p>
 
       <p>
         We reserve the right to make changes to this Privacy Policy at any time
         and for any reason. We will alert you about any changes by updating the
-        “Effective Date” of this Privacy Policy. You are encouraged to
+        &#34;Effective Date&#34; of this Privacy Policy. You are encouraged to
         periodically review this Privacy Policy to stay informed of updates.
       </p>
 
@@ -184,11 +185,11 @@ const Privacy: FC<pageProps> = ({}) => {
 
       <p>
         Most web browsers and some mobile operating systems include a
-        Do-Not-Track (“DNT”) feature or setting you can activate to signal your
-        privacy preference not to have data about your online browsing
-        activities monitored and collected. At this stage, we do not alter our
-        Application’s data collection and use practices when we see a Do Not
-        Track signal from your browser.
+        Do-Not-Track (&#34;DNT&#34;) feature or setting you can activate to
+        signal your privacy preference not to have data about your online
+        browsing activities monitored and collected. At this stage, we do not
+        alter our Application&rsquo;s data collection and use practices when we
+        see a Do Not Track signal from your browser.
       </p>
 
       <h2>Contact Us</h2>

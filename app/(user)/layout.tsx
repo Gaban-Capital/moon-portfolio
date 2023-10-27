@@ -3,7 +3,7 @@
 
 import { FC, ReactNode, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import useAuth from '@/common/hooks/useAuth';
 
 import { MOON_PORTFOLIO } from '@/common/constants/copy';
@@ -18,7 +18,8 @@ interface layoutProps {
 const Layout: FC<layoutProps> = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
-  const isPrivacy = containsPrivacy(window.location.href);
+  const pathName = usePathname();
+  const isPrivacy = containsPrivacy(pathName);
   const containerClass = isPrivacy ? '' : 'lg:max-w-[360px] max-w-[400px]';
 
   useEffect(() => {

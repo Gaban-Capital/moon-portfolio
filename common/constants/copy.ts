@@ -10,6 +10,7 @@ export const CREATE_YOUR_ACCOUNT = 'Create Your Account';
 export const FORGOT_PASS = 'Forgot Password?';
 export const RESET_PASS = 'Reset Password';
 export const RESET_YOUR_PASS = 'Reset your password';
+export const ENTER_NEW_PASS = 'Enter your new password';
 export const GOOGLE_ACCOUNT = 'Google Account';
 export const CONTINUE_GOOGLE = 'Continue with Google';
 export const OR_SIGN_GOOGLE = 'Or sign in with Google:';

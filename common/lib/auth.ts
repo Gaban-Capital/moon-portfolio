@@ -16,13 +16,27 @@ interface TokenData {
   jwt: string;
 }
 
+interface GoogleTokenData {
+  user: User;
+  token: string;
+}
+
 export const setToken = (data: TokenData) => {
   if (typeof window === 'undefined') {
     return;
   }
   Cookies.set('id', `${data.user.id}`);
   Cookies.set('username', data.user.username);
-  Cookies.set('jwt', data.jwt);
+  Cookies.set('token', data.jwt);
+};
+
+export const setGoogleToken = (data: GoogleTokenData) => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  Cookies.set('id', `${data.user.id}`);
+  Cookies.set('username', data.user.username);
+  Cookies.set('token', data.token);
 };
 
 export const unsetToken = () => {
@@ -30,7 +44,7 @@ export const unsetToken = () => {
     return;
   }
   Cookies.remove('id');
-  Cookies.remove('jwt');
+  Cookies.remove('token');
   Cookies.remove('username');
 };
 
@@ -43,10 +57,10 @@ export const getUserFromLocalCookie = () => {
         Authorization: `Bearer ${jwt}`,
       },
     })
-      .then((data) => {
+      .then(data => {
         return data.username;
       })
-      .catch((error) => console.error(error));
+      .catch(error => console.error(error));
   } else {
     return;
   }
@@ -60,7 +74,7 @@ export const getIdFromLocalCookie = () => {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${jwt}`,
       },
-    }).then((data) => {
+    }).then(data => {
       return data.id;
     });
   } else {
@@ -69,14 +83,16 @@ export const getIdFromLocalCookie = () => {
 };
 
 export const getTokenFromLocalCookie = () => {
-  return Cookies.get('jwt');
+  return Cookies.get('token');
 };
 
 export const getTokenFromServerCookie = (req: any) => {
   if (!req.headers.cookie || '') {
     return undefined;
   }
-  const jwtCookie = req.headers.cookie.split(';').find((c: string) => c.trim().startsWith('jwt='));
+  const jwtCookie = req.headers.cookie
+    .split(';')
+    .find((c: string) => c.trim().startsWith('jwt='));
   if (!jwtCookie) {
     return undefined;
   }
@@ -88,7 +104,9 @@ export const getIdFromServerCookie = (req: any) => {
   if (!req.headers.cookie || '') {
     return undefined;
   }
-  const idCookie = req.headers.cookie.split(';').find((c: string) => c.trim().startsWith('id='));
+  const idCookie = req.headers.cookie
+    .split(';')
+    .find((c: string) => c.trim().startsWith('id='));
   if (!idCookie) {
     return undefined;
   }

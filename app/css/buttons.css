@@ -35,7 +35,3 @@ button.btn.gray-555:hover {
 button.btn.gray-555:active {
   @apply bg-gray-333 brightness-50 text-white relative;
 }
-
-button.btn-google {
-  padding: 1rem 1rem 0.5rem;
-}

@@ -11,6 +11,7 @@ import Search from '@/components/search';
 import Toggle from '@/components/toggle';
 import TotalValue from '@/components/total-value';
 import { MOON_PORTFOLIO } from '@/common/constants/copy';
+import { unsetToken } from '@/common/lib/auth';
 import { formatToDollars } from '@/common/utils/formatters';
 
 interface portfolioProps {}
@@ -73,6 +74,14 @@ const page: FC<portfolioProps> = ({}) => {
       </div>
       <div>{coinPortfolio?.map((coin, i) => <li key={i}>{coin}</li>)}</div>
       <Nav />
+      <button
+        onClick={() => {
+          unsetToken();
+          window.location.reload();
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 };

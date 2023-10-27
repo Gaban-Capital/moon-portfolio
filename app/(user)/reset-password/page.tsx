@@ -1,32 +1,44 @@
 'use client';
 
 import axios from 'axios';
-import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/buttons';
-import { setToken } from '@/common/lib/auth';
-import { SUBMIT, RESET_PASS, RESET_YOUR_PASS } from '@/common/constants/copy';
+import {
+  SUBMIT,
+  RESET_PASS,
+  RESET_YOUR_PASS,
+  SIGN_IN,
+} from '@/common/constants/copy';
+import { useState } from 'react';
+import Link from 'next/link';
 
 type ResetPasswordInput = {
-  identifier: string;
-  password: string;
+  email: string;
 };
 
 const ResetPassword = (): JSX.Element => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<ResetPasswordInput>();
-  const router = useRouter();
+
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const onSubmit: SubmitHandler<ResetPasswordInput> = async data => {
     try {
-      router.replace('/');
-    } catch (error: any) {}
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/forgot-password`,
+        data
+      );
+
+      setSuccessMessage('Reset password link has been sent to your email');
+    } catch (error: any) {
+      setSuccessMessage(null);
+      setError('email', { message: 'Invalid email' });
+    }
   };
 
   return (
@@ -39,11 +51,27 @@ const ResetPassword = (): JSX.Element => {
         <input
           type="email"
           placeholder="Email"
-          {...register('identifier', {
+          {...register('email', {
             required: 'Email is required',
           })}
         />
-        <Button gray="333" text={SUBMIT} mt={true} disabled={isLoading} />
+        {errors?.email?.message && (
+          <div className="text-red mt-2">{errors?.email?.message}</div>
+        )}
+        {successMessage && (
+          <div className="text-green mt-2">{successMessage}</div>
+        )}
+        <Button
+          gray="333"
+          text={SUBMIT}
+          mt={true}
+          disabled={isSubmitting}
+          type="submit"
+          loading={isSubmitting}
+        />
+        <Link href="/login" className="no-underline">
+          <Button gray="333" text={SIGN_IN} mb={true} />
+        </Link>
       </form>
     </div>
   );

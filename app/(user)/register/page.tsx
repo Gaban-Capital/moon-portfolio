@@ -11,10 +11,12 @@ import { setToken } from '@/common/lib/auth';
 import {
   CREATE_ACCOUNT,
   CREATE_YOUR_ACCOUNT,
-  GOOGLE_ACCOUNT,
   SIGN_UP,
   SIGN_IN_EMAIL,
+  CONTINUE_GOOGLE,
 } from '@/common/constants/copy';
+import { Button } from '@/components/buttons';
+import useGoogleAuth from '@/common/hooks/useGoogleAuth';
 
 interface pageProps {}
 
@@ -29,14 +31,13 @@ const Register: FC<pageProps> = ({}) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<RegisterInput>();
   const router = useRouter();
+  const { login, loading } = useGoogleAuth();
 
   const onSubmit: SubmitHandler<RegisterInput> = async data => {
-    console.log(data);
-
     if (data.password !== data.confirmPassword) {
       setError('confirmPassword', {
         message: 'Password does not match',
@@ -46,18 +47,18 @@ const Register: FC<pageProps> = ({}) => {
 
     try {
       const { data: authData } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/local/register`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local/register`,
         {
           name: data.name,
           email: data.email,
           username: data.email,
           password: data.password,
-        },
+        }
       );
 
       setToken(authData);
 
-      router.replace('/');
+      router.replace('/portfolio');
     } catch (error: any) {
       setError('password', {
         message: error?.response?.data?.error?.message,
@@ -114,28 +115,22 @@ const Register: FC<pageProps> = ({}) => {
       {errors?.confirmPassword?.message && (
         <div className="text-red mt-2">{errors?.confirmPassword?.message}</div>
       )}
-      <button
+      <Button
         type="submit"
-        className="btn gray-333 text-sm lg:text-base w-full my-4"
-      >
-        {SIGN_UP}
-      </button>
+        gray="333"
+        text={SIGN_UP}
+        mt
+        loading={isSubmitting}
+        disabled={isSubmitting}
+      />
       <p className="text-yellow">Or sign in with</p>
-      <button
-        type="button"
-        className="btn btn-google gray-555 text-sm lg:text-base w-full"
-        disabled={isLoading}
-      >
-        <div className="float-left flex-auto">
-          <Image
-            width="24"
-            height="24"
-            src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/external-Google-logos-and-brands-those-icons-lineal-those-icons.png"
-            alt="external-Google-logos-and-brands-those-icons-lineal-those-icons"
-          />
-        </div>
-        <div>{GOOGLE_ACCOUNT}</div>
-      </button>
+      <Button
+        gray="555"
+        text={CONTINUE_GOOGLE}
+        google={true}
+        loading={loading}
+        onClick={login}
+      />
       <p className="text-yellow">
         Already have an account?{' '}
         <Link href="/login" className="text-pink no-underline	">

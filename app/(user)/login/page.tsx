@@ -13,35 +13,38 @@ import {
   FORGOT_PASS,
   OR_SIGN_GOOGLE,
 } from '@/common/constants/copy';
+import { Poppins } from 'next/font/google';
+import useGoogleAuth from '@/common/hooks/useGoogleAuth';
 
 type LoginInput = {
   identifier: string;
   password: string;
 };
 
+const poppins = Poppins({ weight: '500', style: 'normal', subsets: ['latin'] });
+
 const Login = (): JSX.Element => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
     setError,
   } = useForm<LoginInput>();
   const router = useRouter();
+  const { login, loading } = useGoogleAuth();
 
   const onSubmit: SubmitHandler<LoginInput> = async data => {
     try {
       const { data: authData } = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/local`,
-        data,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/auth/local`,
+        data
       );
 
       setToken(authData);
 
-      router.replace('/');
+      router.replace('/portfolio');
     } catch (error: any) {
-      setError('password', {
-        message: error?.response?.data?.error?.message,
-      });
+      setError('password', { message: 'Invalid credentials' });
     }
   };
 
@@ -78,7 +81,9 @@ const Login = (): JSX.Element => {
           text={SIGN_IN}
           mt={true}
           mb={true}
-          disabled={isLoading}
+          disabled={isSubmitting}
+          loading={isSubmitting}
+          type="submit"
         />
       </form>
 
@@ -90,7 +95,19 @@ const Login = (): JSX.Element => {
       </Link>
       <p className="text-yellow mt-10">{OR_SIGN_GOOGLE}</p>
 
-      <Button gray="555" text={CONTINUE_GOOGLE} google={true} />
+      <Button
+        gray="555"
+        text={CONTINUE_GOOGLE}
+        google={true}
+        loading={loading}
+        onClick={login}
+      />
+      <p className={`text-yellow ${poppins.className}`}>
+        {"Don't have an account yet? "}
+        <Link href="/register" className="text-pink no-underline	">
+          Sign Up
+        </Link>
+      </p>
     </div>
   );
 };

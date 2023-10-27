@@ -3,5 +3,12 @@
 interface CurrencySwitchProps {}
 
 export default function CurrencySwitch({}: CurrencySwitchProps) {
-  return <div>USD | BTC | ETH | SOL</div>;
+  return (
+    <div className="currency-switch-container">
+      <div className="currency-btn active">USD</div> <span>|</span>
+      <div className="currency-btn">BTC</div> <span>|</span>
+      <div className="currency-btn">ETH</div> <span>|</span>
+      <div className="currency-btn">SOL</div>
+    </div>
+  );
 }

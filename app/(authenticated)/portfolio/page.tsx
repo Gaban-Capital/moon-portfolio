@@ -16,8 +16,7 @@ import { formatToDollars } from '@/common/utils/formatters';
 
 interface portfolioProps {}
 
-//? Temp
-const tempPortfolioValue = 1597010.15;
+// ? Temp
 const tempCoins = [
   {
     name: 'Bitcoin',

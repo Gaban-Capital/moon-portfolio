@@ -7,6 +7,9 @@
   --green: #4e6e58;
   --pink: #e56399;
   --red: ##d10000;
+  --gray-light: #666666;
+  --gray-medium: #555555;
+  --gray-dark: #333333;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -27,3 +27,36 @@ export const splitMoneyNumber = (moneyNumber: string): [string, string] => {
 
   return [integerPart, decimalPart];
 };
+
+function getOrdinalNum(n: any) {
+  return (
+    n +
+    (n > 0
+      ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10]
+      : '')
+  );
+}
+
+export const formatDate = (): string => {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const now = new Date();
+  const month = months[now.getMonth()];
+  const day = getOrdinalNum(now.getDate());
+  const year = now.getFullYear();
+
+  return `${month} ${day} ${year}`;
+};

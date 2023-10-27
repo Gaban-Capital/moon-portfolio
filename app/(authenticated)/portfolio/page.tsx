@@ -13,6 +13,7 @@ import TotalValue from '@/components/total-value';
 import { MOON_PORTFOLIO } from '@/common/constants/copy';
 import { unsetToken } from '@/common/lib/auth';
 import { formatToDollars } from '@/common/utils/formatters';
+import { formatDate } from '@/common/utils/formatters';
 
 interface portfolioProps {}
 
@@ -48,6 +49,8 @@ const page: FC<portfolioProps> = ({}) => {
 
   const handleOverlayClick = () => setInputResult('');
 
+  const currentDate = formatDate();
+
   return (
     <div className="portfolio-container">
       <Overlay searching={searchText} clickHandler={handleOverlayClick} />
@@ -59,6 +62,9 @@ const page: FC<portfolioProps> = ({}) => {
             {MOON_PORTFOLIO}
           </h1>
         </div>
+
+        <div className="current-date">{currentDate}</div>
+
         <Search
           coins={tempCoins}
           onInputChange={handleInputUpdate}

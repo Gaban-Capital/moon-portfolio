@@ -29,7 +29,7 @@
 .total-value {
   position: absolute;
   top: 8rem;
-  right: 4rem;
+  right: 1rem;
   color: var(--yellow);
 }
 
@@ -44,9 +44,10 @@
 .currency-switch-container {
   position: absolute;
   top: 14rem;
-  right: 7.5rem;
+  right: 3rem;
   display: flex;
   width: 125px;
+  font-size: 0.8rem;
 }
 
 .currency-switch-container span {
@@ -60,4 +61,12 @@
 
 .currency-btn.active {
   color: var(--yellow);
+}
+
+.current-date {
+  position: absolute;
+  top: 5rem;
+  right: 1rem;
+  font-size: 0.7rem;
+  color: var(--gray-light);
 }

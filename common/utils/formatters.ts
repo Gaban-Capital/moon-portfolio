@@ -4,6 +4,9 @@ interface Coin {
   price: string;
 }
 
+export const containsPrivacy = (str: string): boolean =>
+  str.includes('privacy');
+
 export const pluckCoinNames = (coins: Coin[]) => coins.map(coin => coin.name);
 
 export const formatToDollars = (value: number): string => {

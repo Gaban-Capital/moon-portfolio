@@ -4,7 +4,7 @@ interface pageProps {}
 
 const Privacy: FC<pageProps> = ({}) => {
   return (
-    <main>
+    <main className="privacy-container">
       <>
         <title>Moon Portfolio Privacy Policy</title>
       </>

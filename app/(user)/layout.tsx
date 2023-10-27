@@ -3,11 +3,12 @@
 
 import { FC, ReactNode, useEffect } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import useAuth from '@/common/hooks/useAuth';
 
 import { MOON_PORTFOLIO } from '@/common/constants/copy';
 import Loading from '@/components/loading';
+import { containsPrivacy } from '@/common/utils/formatters';
 // import Alert from '@/components/alert'; // TODO handle auth alerts
 
 interface layoutProps {
@@ -17,6 +18,9 @@ interface layoutProps {
 const Layout: FC<layoutProps> = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
+  const pathName = usePathname();
+  const isPrivacy = containsPrivacy(pathName);
+  const containerClass = isPrivacy ? '' : 'lg:max-w-[360px] max-w-[400px]';
 
   useEffect(() => {
     if (isAuthenticated && !loading) router.push('/');
@@ -33,7 +37,7 @@ const Layout: FC<layoutProps> = ({ children }) => {
   return (
     <main className="flex flex-col items-center justify-between p-10">
       {/* <Alert type={'error'} msg={'Some seriously bad happened.'} /> */}
-      <div className="lg:max-w-[360px] max-w-[400px]">
+      <div className={containerClass}>
         <div>
           <h1 className="logo-text brightness-150 lg:text-5xl text-4xl">
             <Link href="/">{MOON_PORTFOLIO}</Link>

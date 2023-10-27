@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useEffect, use, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 interface pageProps {}
 
@@ -28,12 +28,6 @@ const page: FC<pageProps> = ({}) => {
   useEffect(() => {
     getPosts().then(data => setPosts(data));
   }, []);
-
-  // TODO question for Vince, how to use use here in order to trigger the loading.tsx component
-  // useEffect(() => {
-  //   let data = use(getPosts());
-  //   return setPosts(data);
-  // }, []);
 
   return (
     <div className="portfolio-container">

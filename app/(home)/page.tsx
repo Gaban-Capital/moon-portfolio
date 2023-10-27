@@ -1,8 +1,8 @@
 'use client';
 
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Poppins } from 'next/font/google';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 import useAuth from '@/common/hooks/useAuth';
@@ -16,6 +16,8 @@ import { Button } from '@/components/buttons';
 import Logo from '@/components/logo';
 import Loading from '@/components/loading';
 import useGoogleAuth from '@/common/hooks/useGoogleAuth';
+import axios from 'axios';
+import { setGoogleToken } from '@/common/lib/auth';
 
 interface pageProps {}
 
@@ -24,18 +26,45 @@ const poppins = Poppins({ weight: '500', style: 'normal', subsets: ['latin'] });
 const Page: FC<pageProps> = ({}) => {
   const { loading, isAuthenticated } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const code = searchParams?.get('code');
   const { login, loading: loadingGoogle } = useGoogleAuth();
+  const [authenticatingGoogle, setAuthenticatingGoogle] = useState(false);
+
+  useEffect(() => {
+    if (code && !authenticatingGoogle && !isAuthenticated) {
+      authenticateViaGoogle(code);
+    }
+  }, [code, authenticatingGoogle, isAuthenticated]);
 
   useEffect(() => {
     if (isAuthenticated && !loading) router.push('/portfolio');
   }, [isAuthenticated, loading]);
 
-  if (loading || isAuthenticated) {
+  if (loading || isAuthenticated || authenticatingGoogle) {
     return (
       <main className="flex flex-col items-center justify-between p-10">
         <Loading />
       </main>
     );
+  }
+
+  async function authenticateViaGoogle(code: string) {
+    setAuthenticatingGoogle(true);
+
+    try {
+      const { data: authData } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/strapi-google-auth/user-profile`,
+        {
+          code,
+        }
+      );
+
+      setGoogleToken(authData?.data);
+      router.replace('/portfolio');
+    } catch (error: any) {}
+
+    setAuthenticatingGoogle(false);
   }
 
   return (

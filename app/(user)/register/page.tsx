@@ -11,11 +11,12 @@ import { setToken } from '@/common/lib/auth';
 import {
   CREATE_ACCOUNT,
   CREATE_YOUR_ACCOUNT,
-  GOOGLE_ACCOUNT,
   SIGN_UP,
   SIGN_IN_EMAIL,
+  CONTINUE_GOOGLE,
 } from '@/common/constants/copy';
 import { Button } from '@/components/buttons';
+import useGoogleAuth from '@/common/hooks/useGoogleAuth';
 
 interface pageProps {}
 
@@ -34,6 +35,7 @@ const Register: FC<pageProps> = ({}) => {
     setError,
   } = useForm<RegisterInput>();
   const router = useRouter();
+  const { login, loading } = useGoogleAuth();
 
   const onSubmit: SubmitHandler<RegisterInput> = async data => {
     if (data.password !== data.confirmPassword) {
@@ -122,21 +124,13 @@ const Register: FC<pageProps> = ({}) => {
         disabled={isSubmitting}
       />
       <p className="text-yellow">Or sign in with</p>
-      <button
-        type="button"
-        className="btn btn-google gray-555 text-sm lg:text-base w-full"
-        disabled={isSubmitting}
-      >
-        <div className="float-left flex-auto">
-          <Image
-            width="24"
-            height="24"
-            src="https://img.icons8.com/external-those-icons-lineal-those-icons/24/external-Google-logos-and-brands-those-icons-lineal-those-icons.png"
-            alt="external-Google-logos-and-brands-those-icons-lineal-those-icons"
-          />
-        </div>
-        <div>{GOOGLE_ACCOUNT}</div>
-      </button>
+      <Button
+        gray="555"
+        text={CONTINUE_GOOGLE}
+        google={true}
+        loading={loading}
+        onClick={login}
+      />
       <p className="text-yellow">
         Already have an account?{' '}
         <Link href="/login" className="text-pink no-underline	">

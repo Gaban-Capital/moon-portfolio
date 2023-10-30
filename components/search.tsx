@@ -31,7 +31,9 @@ const Search: React.FC<SearchProps> = ({
 
   console.log('coins', coins);
 
-  const handleCoinClick = (coin: any) => {};
+  // TODO
+  // Function that should handle the coin selection to store into redux
+  const handleCoinSelect = (coin: any) => {};
 
   const filteredCoins = useMemo(() => {
     if (!filter) return pythCoins;
@@ -51,7 +53,8 @@ const Search: React.FC<SearchProps> = ({
 
   // TODO
   // Goal when user is searching, send what they type to filter out coins via the pythCoins.ts
-  // Then once a coin is selected return a coin object with it's current price
+  // Once a coin is selected return a coin object with it's current price
+  // { name: Bitcoin, symbol: BTC, price: '$34,329.92' }
 
   useEffect(() => {
     if (valueToChange === '') {

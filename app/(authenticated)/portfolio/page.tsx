@@ -24,28 +24,6 @@ interface Coin {
   position: number;
 }
 
-// ? Temp
-const tempCoins: Coin[] = [
-  {
-    name: 'Bitcoin',
-    symbol: 'BTC',
-    price: '34,753.78',
-    position: 1,
-  },
-  {
-    name: 'Ethereum',
-    symbol: 'ETH',
-    price: '1,796.44',
-    position: 3.33033,
-  },
-  {
-    name: 'Solana',
-    symbol: 'SOL',
-    price: '32.50',
-    position: 2500.6942,
-  },
-];
-
 const page: FC<portfolioProps> = ({}) => {
   const [searchText, setInputResult] = useState('');
   const [toggleType, setToggleType] = useState('grid');
@@ -55,15 +33,9 @@ const page: FC<portfolioProps> = ({}) => {
   const portfolioValue =
     currency === 'usd' ? formatToDollars(1597010.15) : '1597010.15';
 
-  const handleInputUpdate = (value: string) => setInputResult(value);
-
   const handleOverlayClick = () => setInputResult('');
 
   const currentDate = formatDate();
-
-  useEffect(() => {
-    setCoinPortfolio(tempCoins);
-  }, []);
 
   return (
     <div className="portfolio-container">
@@ -79,11 +51,7 @@ const page: FC<portfolioProps> = ({}) => {
 
         <div className="current-date">{currentDate}</div>
 
-        <Search
-          coins={tempCoins}
-          onInputChange={handleInputUpdate}
-          valueToChange={searchText}
-        />
+        <Search />
       </header>
 
       <div>

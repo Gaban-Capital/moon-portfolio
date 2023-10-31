@@ -1,8 +1,4 @@
-interface Coin {
-  name: string;
-  symbol: string;
-  price: string;
-}
+import { Coin } from '../types/CoinType';
 
 export const containsPrivacy = (str: any): boolean => str.includes('privacy');
 

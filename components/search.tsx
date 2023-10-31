@@ -9,7 +9,7 @@ import { getCoinPrice } from '@/common/utils/pyth';
 
 type SearchProps = {};
 
-const MIN_SEARCH_LENGTH = 3;
+const MIN_SEARCH_LENGTH = 2;
 
 const Search: React.FC<SearchProps> = () => {
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ const Search: React.FC<SearchProps> = () => {
   // Once a coin is selected return a coin object with it's current price
   // { name: Bitcoin, symbol: BTC, price: '$34,329.92' }
   const filteredCoins = filterCoins(inputValue);
+  console.log('filteredCoins', filteredCoins);
 
   return (
     <div className="search-container">

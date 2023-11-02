@@ -1,8 +1,4 @@
-interface Coin {
-  name: string;
-  symbol: string;
-  price: string;
-}
+import { Coin } from '../types/CoinType';
 
 export const containsPrivacy = (str: any): boolean => str.includes('privacy');
 
@@ -59,4 +55,19 @@ export const formatDate = (): string => {
   const year = now.getFullYear();
 
   return `${month} ${day} ${year}`;
+};
+
+export const multiplyPriceByPosition = (
+  price: string,
+  position: number
+): string => {
+  // Remove commas from the price string and then convert to a number
+  let numericPrice = Number(price.replace(/,/g, ''));
+  let result = numericPrice * position;
+
+  // Format the result with commas for thousands
+  return new Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+  }).format(result);
 };

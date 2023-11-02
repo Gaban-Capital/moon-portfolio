@@ -1,13 +1,24 @@
-interface CoinBlockProps {}
+import { multiplyPriceByPosition } from '@/common/utils/formatters';
 
-export default function CoinBlockProps({}: CoinBlockProps) {
+interface Coin {
+  name: string;
+  symbol: string;
+  price: string;
+  position: number;
+}
+
+interface CoinBlockProps {
+  coin: Coin;
+}
+
+export default function CoinBlockProps({ coin }: CoinBlockProps) {
   return (
     <div>
-      <div>Price</div>
-      <div>Holdings</div>
-      <div>Symbol</div>
+      <div>{coin.price}</div>
+      <div>{coin.position}</div>
+      <div>{coin.symbol}</div>
       <div>Value</div>
-      <div>Value</div>
+      <div>{multiplyPriceByPosition(coin.price, coin.position)}</div>
     </div>
   );
 }

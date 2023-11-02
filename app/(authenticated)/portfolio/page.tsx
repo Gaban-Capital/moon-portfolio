@@ -17,35 +17,21 @@ import { formatDate } from '@/common/utils/formatters';
 
 interface portfolioProps {}
 
-// ? Temp
-const tempCoins = [
-  {
-    name: 'Bitcoin',
-    symbol: 'BTC',
-    price: '34,753.78',
-  },
-  {
-    name: 'Ethereum',
-    symbol: 'ETH',
-    price: '1,796.44',
-  },
-  {
-    name: 'Solana',
-    symbol: 'SOL',
-    price: '32.50',
-  },
-];
+interface Coin {
+  name: string;
+  symbol: string;
+  price: string;
+  position: number;
+}
 
 const page: FC<portfolioProps> = ({}) => {
   const [searchText, setInputResult] = useState('');
   const [toggleType, setToggleType] = useState('grid');
   const [currency, setCurrency] = useState('usd');
-  const [coinPortfolio, setCoinPortfolio] = useState([]);
+  const [coinPortfolio, setCoinPortfolio] = useState<Coin[]>([]);
 
   const portfolioValue =
     currency === 'usd' ? formatToDollars(1597010.15) : '1597010.15';
-
-  const handleInputUpdate = (value: string) => setInputResult(value);
 
   const handleOverlayClick = () => setInputResult('');
 
@@ -65,11 +51,7 @@ const page: FC<portfolioProps> = ({}) => {
 
         <div className="current-date">{currentDate}</div>
 
-        <Search
-          coins={tempCoins}
-          onInputChange={handleInputUpdate}
-          valueToChange={searchText}
-        />
+        <Search />
       </header>
 
       <div>
@@ -77,7 +59,13 @@ const page: FC<portfolioProps> = ({}) => {
         <CurrencySwitch />
         <Toggle type="grid" />
       </div>
-      <div>{coinPortfolio?.map((coin, i) => <li key={i}>{coin}</li>)}</div>
+      <div>
+        {coinPortfolio?.map((coin, i) => (
+          <li key={i}>
+            <CoinBlock coin={coin} />
+          </li>
+        ))}
+      </div>
       <Nav />
       <button
         onClick={() => {

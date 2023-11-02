@@ -1,42 +1,48 @@
-import React, { useState, ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import SearchIcon from '@/components/search-icon';
-import { pluckCoinNames } from '@/common/utils/formatters';
+import { pythCoins } from '@/common/constants/pyth-coins';
+import { setSelectedCrypto } from '@/common/redux/slices/cryptoSlice';
+import { Coin } from '@/common/types/CoinType';
+import { getCoinPrice } from '@/common/utils/pyth';
 
-interface Coin {
-  name: string;
-  symbol: string;
-  price: string;
-}
+type SearchProps = {};
 
-type SearchProps = {
-  onInputChange: (inputValue: string) => void;
-  valueToChange: string;
-  coins: Coin[];
-};
+const MIN_SEARCH_LENGTH = 2;
 
-const Search: React.FC<SearchProps> = ({
-  onInputChange,
-  valueToChange,
-  coins,
-}) => {
+const Search: React.FC<SearchProps> = () => {
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
-  const [coinNames, setCoinNames] = useState(['']);
 
-  console.log('coins', coins);
+  const handleCoinSelect = async (coin: Coin) => {
+    const res = await getCoinPrice(coin.key);
+    dispatch(setSelectedCrypto({ ...coin, price: res[0] ?? 0 }));
+    setInputValue(`${coin.symbol} - ${coin.name}`);
+  };
+
+  const filterCoins = (filter: string): Coin[] => {
+    if (filter.length < MIN_SEARCH_LENGTH) return [];
+    if (!filter) return pythCoins as Coin[];
+
+    return pythCoins.filter(
+      coin =>
+        coin.symbol.toLowerCase().indexOf(filter.toLowerCase()) !== -1 ||
+        coin.name.toLowerCase().indexOf(filter.toLowerCase()) !== -1
+    ) as Coin[];
+  };
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setInputValue(newValue);
-    onInputChange(newValue);
-    setCoinNames(pluckCoinNames(coins));
   };
 
-  useEffect(() => {
-    if (valueToChange === '') {
-      setInputValue(valueToChange);
-    }
-  }, [valueToChange]);
+  // TODO
+  // Goal when user is searching, send what they type to filter out coins via the pythCoins.ts
+  // Once a coin is selected return a coin object with it's current price
+  // { name: Bitcoin, symbol: BTC, price: '$34,329.92' }
+  const filteredCoins = filterCoins(inputValue);
+  console.log('filteredCoins', filteredCoins);
 
   return (
     <div className="search-container">
@@ -53,12 +59,14 @@ const Search: React.FC<SearchProps> = ({
         />
       </div>
 
-      {inputValue != '' && (
+      {inputValue.length >= MIN_SEARCH_LENGTH && filteredCoins.length > 0 && (
         <div className="search-dropdown">
           <div>
             <ul>
-              {coinNames.map((coin, i) => (
-                <li key={i}>{coin}</li>
+              {filteredCoins.map((coin, i) => (
+                <li key={i} onClick={() => handleCoinSelect(coin)}>
+                  {coin.name}
+                </li>
               ))}
             </ul>
           </div>
